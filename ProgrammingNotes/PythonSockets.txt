@@ -1,0 +1,52 @@
+Python Socket Programming for Python3
+
+
+Basics of Sockets
+
+Sockets are opened and closed to aid in communication between two entities
+  Server and Client
+  Requesting information
+  Ports
+  Port 80 used to transfer http data
+    Websites
+
+import socket
+
+to create socket:
+  s = socket.socket(socket.AF_INET, socket.sock_STREAM)
+  sock.STREAM is used for TCP
+
+communicate with Socket
+  server = 'youtube.com'
+  port = __ (80) for Websites
+
+server_ip = socket.gethostbyname(server)
+
+request = "GET / HTTP/1.1\nHost: "+server+"\n\n"
+  making http Request
+s.connect((server,port))
+s.send(request.encode())
+results = s.recv(4096)
+  this is the buffer
+
+while (len(result) > 0):
+  print(result)
+  result = s.recv(4096)
+
+simple port scanner tells whether ports are open or closed
+
+s = socket.socket(socket.AF_INET, socket.sock_STREAM)
+server = "youtube.com"
+
+def pscan(port):
+  try:
+    s.connect((server,port))
+    return TRUE
+  except:
+    return FALSE
+
+for x in range(1,26):
+    if pscan(x):
+        print('Port',x,'is open')
+    else:
+      print('Port',x,'is closed')
